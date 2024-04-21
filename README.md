@@ -1,11 +1,13 @@
 # Sneaky Throws Wrapper that works at runtime
 
-This is a little code snippet that converts a `Callable` which may throw a checked Exception into a `Supplier`,
+This is a little code snippet that converts a `Callable` - which may throw a checked Exception - into a `Supplier`,
 which officially should not be able to throw that Exception.  
 This is possible because in Java, checked exceptions are checked only at compile-time, while the JVM accepts any `Throwable` to be thrown
 by any method at any time.
 
 This snippet gets around the compile-rule by instantiating its own ClassLoader, that then instantiates a helper class from fumbled bytecode.  
+This result could also be achieved by manipulating the bytecode after compilation but before packaging, but the variant presented here is more portable
+and does not introduce complexity through a build process that could break.
 
 ## How to run
 ```bash
